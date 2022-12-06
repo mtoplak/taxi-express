@@ -27,7 +27,7 @@ public class PlaciloController {
     @PostMapping("/dodaj")
     public Placilo dodajPlacilo(@RequestBody Placilo placilo){
             return placiloDao.save(placilo);
-        }
+    }
 
     @PutMapping("/spremeni/{id}")
     public Placilo spremeniPlacilo(@PathVariable(name="id") Long id, @RequestBody Placilo placilo) {
@@ -46,11 +46,25 @@ public class PlaciloController {
         return true;
     }
 
-    //vrne true, če je točno določeno plačilo večje kot podan znesek oz. false, če ni večje kot podan znesek
-    @GetMapping("/znesek/{zznesek}/id/{id}")
-    public boolean vrnoDolocenoPlaciloCeJeVecje(@PathVariable(name = "zznesek") float znesek, @PathVariable(name = "id") long id) {
+    // kompleksna poizvedba (osnovni del)
+    // vrne true, če je točno določeno plačilo večje kot podan znesek oz. false, če ni večje kot podan znesek
+    @GetMapping("/znesek/{znesek}/id/{id}")
+    public boolean vrnoDolocenoPlaciloCeJeVecje(@PathVariable(name = "znesek") float znesek, @PathVariable(name = "id") long id) {
         return (placiloDao.vrnoDolocenoPlaciloCeJeVecje(znesek, id).size() == 1);
     }
 
+    // 1. kompleksnejša poizvedba z 3 parametri
+    // vrni plačila, ki nimajo določenega časa plačila, niso plačana ali pa imajo opombo
+    @GetMapping("/zNapako")
+    public Iterable<Placilo> vrniPlacilaZNapako() {
+        return (placiloDao.vrniPlacilaZNapako());
+    }
+
+    //2. kompleksnejša poizvedba z 3 parametri
+    // vrne plačila, ki so neplačana (status false), med določenima datumoma in so večja od 20€
+    @GetMapping("/neplacana")
+    public Iterable<Placilo> vrniNeplacana(){
+        return (placiloDao.vrniNeplacana());
+    }
 
 }
