@@ -45,4 +45,12 @@ public class PlaciloController {
         placiloDao.deleteById(id);
         return true;
     }
+
+    //vrne true, če je točno določeno plačilo večje kot podan znesek oz. false, če ni večje kot podan znesek
+    @GetMapping("/znesek/{zznesek}/id/{id}")
+    public boolean vrnoDolocenoPlaciloCeJeVecje(@PathVariable(name = "zznesek") float znesek, @PathVariable(name = "id") long id) {
+        return (placiloDao.vrnoDolocenoPlaciloCeJeVecje(znesek, id).size() == 1);
+    }
+
+
 }
