@@ -16,6 +16,14 @@ public class Placilo {
 		return id;
 	}
 
+	public float getZnesek() {
+		return znesek;
+	}
+
+	public void setZnesek(float znesek) {
+		this.znesek = znesek;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
