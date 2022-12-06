@@ -11,6 +11,7 @@ public class Placilo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private float znesek;
+	//status, vrsta, datum, opomba
 
 	public Long getId() {
 		return id;
