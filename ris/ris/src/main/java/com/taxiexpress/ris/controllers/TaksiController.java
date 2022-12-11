@@ -1,15 +1,43 @@
 package com.taxiexpress.ris.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.taxiexpress.ris.dao.TaksiRepository;
+import com.taxiexpress.ris.models.Placilo;
+import com.taxiexpress.ris.models.Taksi;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/taksiji")
 public class TaksiController {
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hej";
+    @Autowired
+    private TaksiRepository taksiDao;
+
+    @GetMapping("")
+    public Iterable<Taksi> vrniVseTaksije() {
+        return taksiDao.findAll();
     }
+
+    @PostMapping("/dodaj")
+    public Taksi dodajTaksi(@RequestBody Taksi taksi){
+        return taksiDao.save(taksi);
+    }
+
+    @PutMapping("/spremeni/{id}")
+    public Taksi spremeniPlacilo(@PathVariable(name="id") Long id, @RequestBody Taksi taksi) {
+        if(!taksiDao.existsById(id))
+            return null;
+
+        taksi.setId(id);
+        return taksiDao.save(taksi);
+    }
+
+    @DeleteMapping("/zbrisi/{id}")
+    public Boolean izbrisiTaksi(@PathVariable(name="id") Long id) {
+        if(!taksiDao.existsById(id))
+            return false;
+        taksiDao.deleteById(id);
+        return true;
+    }
+
 }
