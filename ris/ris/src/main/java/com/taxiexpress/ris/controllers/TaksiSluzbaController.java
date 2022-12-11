@@ -42,6 +42,19 @@ public class TaksiSluzbaController {
         return true;
     }
 
+    // poizvedba z 2 modeloma
+    // izpis taksi služb, ki imajo vsaj x taksijev
+    @GetMapping("/stevilo/{stevilo}")
+    public Iterable<TaksiSluzba> vrniSluzbeZVsajTaksiji(@PathVariable(name = "stevilo") int max_stevilo_potnikov){
+        return sluzbaDao.vrniSluzbeZVsajTaksiji(max_stevilo_potnikov);
+    }
 
+
+    // poizvedba z 2 modeloma
+    // izpis taksi služb, ki imajo taksi za x ali več ljudi
+    @GetMapping("/stLjudi/{stevilo}")
+    public Iterable<TaksiSluzba> vrniSluzbeZXTaksiji(@PathVariable(name = "stevilo") int stevilo_potnikov){
+        return sluzbaDao.vrniSluzbeStLjudi(stevilo_potnikov);
+    }
 
 }

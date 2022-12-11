@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Taksi {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
 	private Long id;
 	private String model;
 	private String registrskaStevilka;
