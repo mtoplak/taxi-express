@@ -3,6 +3,7 @@ package com.taxiexpress.ris.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Uporabnik {
@@ -15,9 +16,12 @@ public class Uporabnik {
 	private boolean jeAdmin;
 
 	@OneToMany (mappedBy = "uporabnik", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Prevoz> prevoz = new ArrayList<Prevoz>();
+	public List<Prevoz> prevoz;
 
 	public Uporabnik() {
+		//throw new UnsupportedOperationException();
+	}
+	public Uporabnik(String ime, String priimek, String email, boolean jeAdmin, Prevoz prevoz) {
 		//throw new UnsupportedOperationException();
 	}
 
@@ -27,6 +31,46 @@ public class Uporabnik {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPriimek() {
+		return priimek;
+	}
+
+	public void setPriimek(String priimek) {
+		this.priimek = priimek;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isJeAdmin() {
+		return jeAdmin;
+	}
+
+	public void setJeAdmin(boolean jeAdmin) {
+		this.jeAdmin = jeAdmin;
+	}
+
+	public List<Prevoz> getPrevoz() {
+		return prevoz;
+	}
+
+	public void setPrevoz(List<Prevoz> prevoz) {
+		this.prevoz = prevoz;
 	}
 
 	private void naroci() {
