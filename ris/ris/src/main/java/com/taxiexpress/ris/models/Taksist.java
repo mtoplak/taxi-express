@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Taksist {
@@ -23,13 +23,61 @@ public class Taksist {
 	public TaksiSluzba taksiSluzba;
 
 	@OneToMany (mappedBy = "taksist", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Taksi> taksi = new ArrayList<Taksi>();
+	public List<Taksi> taksi;
 
 	@OneToMany (mappedBy = "taksist", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public ArrayList<Prevoz> prevoz = new ArrayList<Prevoz>();
+	public List<Prevoz> prevoz;
 
 	public Taksist() {
 		//throw new UnsupportedOperationException();
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public double getZasluzek() {
+		return zasluzek;
+	}
+
+	public void setZasluzek(double zasluzek) {
+		this.zasluzek = zasluzek;
+	}
+
+	public int getPrevoziSkupaj() {
+		return prevoziSkupaj;
+	}
+
+	public void setPrevoziSkupaj(int prevoziSkupaj) {
+		this.prevoziSkupaj = prevoziSkupaj;
+	}
+
+	public TaksiSluzba getTaksiSluzba() {
+		return taksiSluzba;
+	}
+
+	public void setTaksiSluzba(TaksiSluzba taksiSluzba) {
+		this.taksiSluzba = taksiSluzba;
+	}
+
+	public List<Taksi> getTaksi() {
+		return taksi;
+	}
+
+	public void setTaksi(List<Taksi> taksi) {
+		this.taksi = taksi;
+	}
+
+	public List<Prevoz> getPrevoz() {
+		return prevoz;
+	}
+
+	public void setPrevoz(List<Prevoz> prevoz) {
+		this.prevoz = prevoz;
 	}
 
 	public Long getId() {

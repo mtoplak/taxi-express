@@ -2,10 +2,15 @@ package com.taxiexpress.ris.controllers;
 
 import com.taxiexpress.ris.dao.TaksiSluzbaRepository;
 import com.taxiexpress.ris.models.Placilo;
+import com.taxiexpress.ris.models.Taksi;
 import com.taxiexpress.ris.models.TaksiSluzba;
+import com.taxiexpress.ris.models.Taksist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sluzbe")
@@ -43,18 +48,34 @@ public class TaksiSluzbaController {
     }
 
     // poizvedba z 2 modeloma
-    // izpis taksi služb, ki imajo vsaj x taksijev
-    @GetMapping("/stevilo/{stevilo}")
-    public Iterable<TaksiSluzba> vrniSluzbeZVsajTaksiji(@PathVariable(name = "stevilo") int max_stevilo_potnikov){
-        return sluzbaDao.vrniSluzbeZVsajTaksiji(max_stevilo_potnikov);
+    // izpis vseh taksijev taksi službe z nazivom x
+    // to mislim, da ni v pravem filu
+    @GetMapping("/taksiji/{naziv}")
+    public Iterable<Taksi> vrniTaksijeOdSluzbe(@PathVariable(name = "naziv") String naziv){
+        return sluzbaDao.vrniTaksijeOdSluzbe(naziv);
     }
 
 
     // poizvedba z 2 modeloma
-    // izpis taksi služb, ki imajo taksi za x ali več ljudi
-    @GetMapping("/stLjudi/{stevilo}")
-    public Iterable<TaksiSluzba> vrniSluzbeZXTaksiji(@PathVariable(name = "stevilo") int stevilo_potnikov){
-        return sluzbaDao.vrniSluzbeStLjudi(stevilo_potnikov);
+    // izpis taksistov taksi službe z nazivom x
+    // to mislim, da ni v pravem filu
+    @GetMapping("/taksisti/{naziv}")
+    public Iterable<Taksist> vrniTaksisteOdSluzbe(@PathVariable(name = "naziv") String naziv){
+        return sluzbaDao.vrniTaksisteOdSluzbe(naziv);
+    }
+
+    // poizvedba z 2 modeloma
+    // izpis taksi služb, ki imajo več kot x taksijev
+    @GetMapping("/taksisti2/{stevilo}")
+    public ArrayList<TaksiSluzba> vrniTaksijeOdSluzbe2(@PathVariable(name = "stevilo") int stevilo){
+        return sluzbaDao.vrniTaksijeOdSluzbe2(stevilo);
+    }
+
+    // poizvedba z 2 modeloma
+    // izpis taksi služb, ki imajo več kot x taksistov
+    @GetMapping("/taksisti3/{stevilo}")
+    public ArrayList<TaksiSluzba> vrniTaksijeOdSluzbe3(@PathVariable(name = "stevilo") int stevilo){
+        return sluzbaDao.vrniTaksijeOdSluzbe3(stevilo);
     }
 
 }

@@ -18,4 +18,15 @@ public interface UporabnikRepository extends CrudRepository<Uporabnik, Long> {
     @Query(value="SELECT * FROM uporabnik u WHERE u.jeAdmin = 0 AND u.ime LIKE %adam% OR u.priimek LIKE %adam%", nativeQuery=true)
     List<Uporabnik> vrniUporabnikeBrezAdminov(boolean jeAdmin, String ime, String priimek);
     */
+
+
+
+    // registracija
+    @Query(value="SELECT * FROM uporabnik u WHERE u.email = :email ", nativeQuery=true)
+    List<Uporabnik> preveriCeEmailObstaja(String email);
+
+    // prijava
+    @Query(value="SELECT * FROM uporabnik WHERE geslo = ? AND email = ?", nativeQuery=true)
+    List<Uporabnik> vrniLogin(String geslo, String email);
+
 }

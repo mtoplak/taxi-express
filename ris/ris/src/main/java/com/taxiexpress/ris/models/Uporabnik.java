@@ -14,6 +14,8 @@ public class Uporabnik {
 	private String priimek;
 	private String email;
 	private boolean jeAdmin;
+	private String geslo;
+
 
 	@OneToMany (mappedBy = "uporabnik", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Prevoz> prevoz;
@@ -87,6 +89,14 @@ public class Uporabnik {
 
 	private void slediTaksiju(Prevoz prevoz) {
 		throw new UnsupportedOperationException();
+	}
+
+	public String getGeslo() {
+		return geslo;
+	}
+
+	public void setGeslo(String geslo) {
+		this.geslo = geslo;
 	}
 
 	private boolean prijava(String email, String geslo) {

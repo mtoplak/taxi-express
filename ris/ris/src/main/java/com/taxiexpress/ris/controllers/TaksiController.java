@@ -6,6 +6,8 @@ import com.taxiexpress.ris.models.Taksi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/taksiji")
 public class TaksiController {
@@ -38,6 +40,19 @@ public class TaksiController {
             return false;
         taksiDao.deleteById(id);
         return true;
+    }
+
+    // poizvedba z 2 modeloma
+    // izpis vseh taksijev taksi službe z nazivom x
+    @GetMapping("/taksiji/{naziv}")
+    public Iterable<Taksi> vrniTaksijeOdSluzbe(@PathVariable(name = "naziv") String naziv){
+        return taksiDao.vrniTaksijeOdSluzbe(naziv);
+    }
+
+    // poskusna
+    @GetMapping("/taksiji2/{naziv}")
+    public ArrayList<Taksi> vrniTaksijeOdSluzbe2(@PathVariable(name = "naziv") String naziv){
+        return taksiDao.vrniTaksijeOdSluzbe2(naziv);
     }
 
 }

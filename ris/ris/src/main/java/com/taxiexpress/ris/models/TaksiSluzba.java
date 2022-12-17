@@ -1,5 +1,7 @@
 package com.taxiexpress.ris.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -27,6 +29,9 @@ public class TaksiSluzba {
 	public TaksiSluzba() {
 		//throw new UnsupportedOperationException();
 	}
+/*
+	@JsonCreator
+	public TaksiSluzba(@JsonProperty("id"))*/
 
 	public TaksiSluzba(String naziv, LocalDate zacetekIzvajanja){
 		this.naziv = naziv;
