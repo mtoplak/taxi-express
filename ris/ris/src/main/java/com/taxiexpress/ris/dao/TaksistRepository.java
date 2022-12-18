@@ -13,4 +13,9 @@ public interface TaksistRepository extends CrudRepository<Taksist, Long> {
     @Query(value = "SELECT * FROM taksist t INNER JOIN taksi_sluzba ts ON t.sluzba_id=ts.id HAVING naziv=:naziv", nativeQuery = true)
     List<Taksist> vrniTaksisteOdSluzbe(String naziv);
 
+    // poizvedba z 3 modeli
+    // izpis taksista, kateri taksi vozi, in pri kateri taksi službi
+    @Query(value = "t.id as taksistov_id, t.ime, t.priimek, ts.naziv, tak.registrska_stevilka FROM taksist t LEFT JOIN taksi_sluzba ts ON t.sluzba_id=ts.id LEFT JOIN taksi tak ON tak.sluzba_id=ts.id", nativeQuery = true)
+    List vrniTaksiste(String ime);
+
 }

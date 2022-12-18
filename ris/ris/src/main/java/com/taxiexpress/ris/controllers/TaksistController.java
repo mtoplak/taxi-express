@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/taksist")
 public class TaksistController {
@@ -20,5 +22,12 @@ public class TaksistController {
     @GetMapping("/taksisti/{naziv}")
     public Iterable<Taksist> vrniTaksisteOdSluzbe(@PathVariable(name = "naziv") String naziv){
         return taksistDao.vrniTaksisteOdSluzbe(naziv);
+    }
+
+    // poizvedba z 3 modeli
+    // izpis taksista, kateri taksi vozi, in pri kateri taksi službi
+    @GetMapping("/ime/{ime}")
+    public List vrniTaksiste(@PathVariable(name = "ime") String ime){
+        return taksistDao.vrniTaksisteOdSluzbe(ime);
     }
 }

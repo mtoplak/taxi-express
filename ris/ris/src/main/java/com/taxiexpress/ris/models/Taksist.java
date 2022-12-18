@@ -12,6 +12,8 @@ public class Taksist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String ime;
+	private String Priimek;
 	private String email;
 	private double zasluzek;
 	private int prevoziSkupaj;

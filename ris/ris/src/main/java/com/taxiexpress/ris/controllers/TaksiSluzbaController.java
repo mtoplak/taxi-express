@@ -78,4 +78,26 @@ public class TaksiSluzbaController {
         return sluzbaDao.vrniTaksijeOdSluzbe3(stevilo);
     }
 
+    // poizvedba s 3 modeli
+    // vrne taksije in taksiste od taksi službe z id-jem x
+    @GetMapping("/taksijiInTaksisti/{id}")
+    public List vrniTaksijeInTaksiste(@PathVariable(name = "id") int id){
+        System.out.println(id);
+        return sluzbaDao.vrniTaksijeInTaksiste(id);
+    }
+
+    // poizvedba s 3 modeli
+    // vrne taksi službe in taksije, ki imajo taksista z imenom x
+    @GetMapping("taksijiInTaksiSluzbe/{ime}")
+    public List vrniTaksijeInSluzbe(@PathVariable(name = "ime") String ime){
+        System.out.println(ime);
+        return sluzbaDao.vrniTaksijeInSluzbe(ime);
+    }
+
+    // poizvedba s 3 modeli
+    // vrne taksiste in taksi službe od službe, ki imajo taksi z določeno registrsko številko x
+    @GetMapping("taksistiInTaksiSluzbe/{reg}")
+    public List vrniTaksisteInSluzbe(@PathVariable(name = "reg") String reg){
+        return sluzbaDao.vrniTaksisteInSluzbe(reg);
+    }
 }
