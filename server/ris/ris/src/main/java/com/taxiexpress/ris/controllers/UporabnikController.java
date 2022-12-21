@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/uporabnik")
 public class UporabnikController {
@@ -23,10 +24,12 @@ public class UporabnikController {
     public Iterable<Uporabnik> vrniVseUporabnike() {
         return uporabnikDao.findAll();
     }
+
     @GetMapping("{id}")
     public Optional<Uporabnik> vrniUporabnika(@PathVariable(name="id") Long id) {
         return uporabnikDao.findById(id);
     }
+
     @PostMapping("/dodajUporabnika")
     public Uporabnik dodajUporabnika(@RequestBody Uporabnik uporabnik) {
         return uporabnikDao.save(uporabnik);
@@ -41,6 +44,7 @@ public class UporabnikController {
         uporabnik.setId(id);
         return uporabnikDao.save(uporabnik);
     }
+
     @DeleteMapping("/zbrisi/{id}")
     public Boolean izbrisiUporabnika(@PathVariable(name="id") Long id) {
 

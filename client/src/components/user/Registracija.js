@@ -1,27 +1,36 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
-function Dodaj() {
+function Registracija() {
   const [ime, setIme] = useState("");
   const [priimek, setPriimek] = useState("");
   const [email, setEmail] = useState("");
+  const [geslo, setGeslo] = useState("");
+  const [warning, setWarning] = useState("");
+  const navigate = useNavigate();
 
-  const dodajTaksista = () => {
+  const registracija = () => {
     api
-      .post("/taksist/dodaj", {
+      .post("/uporabnik/registracija", {
         ime: ime,
         priimek: priimek,
         email: email,
-        prevoziSkupaj: 0,
-        zasluzek: 0,
+        geslo: geslo,
       })
-      .then((result) => console.log(result.data));
+      .then((result) => {
+        console.log(result.data);
+        if (result.data === true) {
+          navigate("/prijava");
+        } else {
+          setWarning("Email že obstaja");
+        }
+      });
   };
 
   return (
     <>
-      <h3>Dodaj taksista</h3>
       <Box
         component="form"
         sx={{
@@ -52,13 +61,21 @@ function Dodaj() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <TextField
+            className="outlined-basic"
+            label="Geslo"
+            variant="outlined"
+            value={geslo}
+            onChange={(e) => setGeslo(e.target.value)}
+          />
         </div>
-        <Button variant="contained" onClick={() => dodajTaksista()}>
-          Dodaj
+        <div style={{ color: "red", marginBottom: "10px" }}>{warning}</div>
+        <Button variant="contained" onClick={() => registracija()}>
+          Registracija
         </Button>
       </Box>
     </>
   );
 }
 
-export default Dodaj;
+export default Registracija;

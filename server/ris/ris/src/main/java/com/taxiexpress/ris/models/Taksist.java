@@ -90,6 +90,22 @@ public class Taksist {
 		this.id = id;
 	}
 
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPriimek() {
+		return Priimek;
+	}
+
+	public void setPriimek(String priimek) {
+		Priimek = priimek;
+	}
+
 	private Prevoz zacniPrevoz(Prevoz prevoz) {
 		throw new UnsupportedOperationException();
 	}
