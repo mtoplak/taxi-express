@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TaksistRepository extends CrudRepository<Taksist, Long> {
 
@@ -17,5 +18,10 @@ public interface TaksistRepository extends CrudRepository<Taksist, Long> {
     // izpis taksista, kateri taksi vozi, in pri kateri taksi službi
     @Query(value = "t.id as taksistov_id, t.ime, t.priimek, ts.naziv, tak.registrska_stevilka FROM taksist t LEFT JOIN taksi_sluzba ts ON t.sluzba_id=ts.id LEFT JOIN taksi tak ON tak.sluzba_id=ts.id", nativeQuery = true)
     List vrniTaksiste(String ime);
+
+
+    // filtriranje
+    @Query(value = "SELECT * FROM taksist WHERE zasluzek>:zasluzek AND prevozi_skupaj>:prevozi AND ime LIKE %:ime%", nativeQuery = true)
+    List<Taksist> filtriraj(double zasluzek, int prevozi, String ime);
 
 }

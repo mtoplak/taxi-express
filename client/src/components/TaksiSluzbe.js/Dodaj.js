@@ -8,6 +8,7 @@ function Dodaj() {
   const [datum, setDatum] = useState("");
 
   const dodajTS = () => {
+    console.log(naziv, datum);
     api
       .post("/sluzbe/dodaj", {
         naziv: naziv,

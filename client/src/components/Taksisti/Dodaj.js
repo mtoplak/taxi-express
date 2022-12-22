@@ -8,6 +8,7 @@ function Dodaj() {
   const [email, setEmail] = useState("");
 
   const dodajTaksista = () => {
+    console.log(ime, priimek, email);
     api
       .post("/taksist/dodaj", {
         ime: ime,

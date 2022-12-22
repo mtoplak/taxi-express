@@ -18,6 +18,7 @@ const pages = [
   "Spremeni taksi službo",
   "Izbriši taksi službo",
   "Vse taksi službe",
+  "Iskanje s filtri",
 ];
 
 function ResponsiveAppBar() {

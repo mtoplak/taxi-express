@@ -59,4 +59,14 @@ public class TaksistController {
     public List vrniTaksiste(@PathVariable(name = "ime") String ime){
         return taksistDao.vrniTaksisteOdSluzbe(ime);
     }
+
+    // filtriranje
+    @GetMapping("/filter/ime={ime}&zasluzek={zasluzek}&prevozi={prevozi}")
+    public List<Taksist> filtriraj(@PathVariable(name = "ime") String ime, @PathVariable(name = "zasluzek") double zasluzek, @PathVariable(name = "prevozi") int prevozi){
+        System.out.println(ime);
+        System.out.println(zasluzek);
+        System.out.println(prevozi);
+        return taksistDao.filtriraj(zasluzek, prevozi, ime);
+    }
+
 }

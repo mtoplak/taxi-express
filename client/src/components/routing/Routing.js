@@ -13,6 +13,7 @@ import Vse from "../TaksiSluzbe.js/Vse";
 import IzbrisiTS from "../TaksiSluzbe.js/Izbrisi";
 import SpremeniTS from "../TaksiSluzbe.js/Spremeni";
 import DodajTS from "../TaksiSluzbe.js/Dodaj";
+import Filtri from "../Filtri";
 
 function Routing() {
   return (
@@ -28,6 +29,7 @@ function Routing() {
       <Route path="/Izbriši taksi službo" element={<IzbrisiTS />} />
       <Route path="/Spremeni taksi službo" element={<SpremeniTS />} />
       <Route path="/Dodaj taksi službo" element={<DodajTS />} />
+      <Route path="/Iskanje s filtri" element={<Filtri />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
